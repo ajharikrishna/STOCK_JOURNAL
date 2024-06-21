@@ -1,0 +1,52 @@
+{% extends "journal/base.html" %} {% block content %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stock Data for</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="get">
+      <label for="symbol">Stock Symbol:</label>
+      <input type="text" required id="symbol" name="symbol" />
+      <button type="submit">Get Data</button>
+    </form>
+    <table class="margin-top">
+      <th>Stock Data for {{ stock_data.info.symbol }}</th>
+      <tr>
+        <th>Last Traded Price</th>
+        <th>Previous Day Close</th>
+        <th>Open</th>
+        <th>High</th>
+        <th>Low</th>
+        <th>Close</th>
+      </tr>
+      <tr>
+        <td>{{ stock_data.priceInfo.lastPrice }}</td>
+        <td>{{ stock_data.priceInfo.previousClose }}</td>
+        <td>{{ stock_data.priceInfo.open }}</td>
+        <td>{{ stock_data.priceInfo.intraDayHighLow.max }}</td>
+        <td>{{ stock_data.priceInfo.intraDayHighLow.min }}</td>
+        <td>{{ stock_data.priceInfo.close }}</td>
+      </tr>
+    </table>
+  </body>
+</html>
+{% endblock %}

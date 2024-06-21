@@ -1,0 +1,12 @@
+{% extends "journal/base.html" %} {% block content %}
+<h2 class="text-center">
+  {% if form.instance.pk %}Update{% else %}Create{% endif %} Trade
+</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">
+    {% if form.instance.pk %}Save{% else %}Create{% endif %}
+  </button>
+</form>
+<a href="{% url 'trade_list' %}" class="btn">Back to Trade List</a>
+{% endblock %}

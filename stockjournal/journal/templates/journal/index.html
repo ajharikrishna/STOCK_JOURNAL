@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stock Journal</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    {% load static %}
+    <link href="{% static 'journal/styles.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Stock Journal</h1>
+      <a href="{% url 'add_trade' %}" class="btn btn-primary mb-3">Add Trade</a>
+      <a href="{% url 'trade_list' %}" class="btn btn-primary mb-3"
+        >Trade List</a
+      >
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Date</th>
+            <th>Stock Symbol</th>
+            <th>Trade Type</th>
+            <th>Entry Price</th>
+            <th>Exit Price</th>
+            <th>Position Size</th>
+            <th>Trade Rationale</th>
+            <th>Trade Outcome</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for trade in trades %}
+          <tr>
+            <td>{{ trade.date }}</td>
+            <td>{{ trade.stock_symbol }}</td>
+            <td>{{ trade.trade_type }}</td>
+            <td>{{ trade.entry_price }}</td>
+            <td>{{ trade.exit_price }}</td>
+            <td>{{ trade.position_size }}</td>
+            <td>{{ trade.trade_rationale }}</td>
+            <td>{{ trade.trade_outcome }}</td>
+            <td>{{ trade.notes }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "journal/base.html" %} {% block content %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Data</title>
+  </head>
+  <body>
+    <h1>Stock Data</h1>
+    <form method="get">
+      <label for="symbol">Stock Symbol:</label>
+      <input type="text" id="symbol" name="symbol" />
+      <button type="submit">Get Data</button>
+    </form>
+    <div>
+      {% if stock_data %}
+      <pre>{{ stock_data.Information  }}</pre>
+
+      {% else %}
+      <p>No data available</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
+{% endblock %}

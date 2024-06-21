@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Trade</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    {% load static %}
+    <link href="{% static 'journal/style.css' %}" rel="stylesheet" />
+    <style>
+      body {
+        background-color: #4caf50;
+      }
+      .container {
+        margin-top: 50px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #343a40;
+      }
+      .form-group label {
+        font-weight: bold;
+        color: #495057;
+      }
+      .form-control {
+        border-radius: 5px;
+      }
+      .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+      }
+      .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+      }
+      .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+      }
+      .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Add Trade</h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">{{ form.date.label_tag }} {{ form.date }}</div>
+        <div class="form-group">{{ form.time.label_tag }} {{ form.time }}</div>
+        <div class="form-group">
+          {{ form.stock_symbol.label_tag }} {{ form.stock_symbol }}
+        </div>
+        <div class="form-group">
+          {{ form.trade_type.label_tag }} {{ form.trade_type }}
+        </div>
+        <div class="form-group">
+          {{ form.entry_price.label_tag }} {{ form.entry_price }}
+        </div>
+        <div class="form-group">
+          {{ form.exit_price.label_tag }} {{ form.exit_price }}
+        </div>
+        <div class="form-group">
+          {{ form.position_size.label_tag }} {{ form.position_size }}
+        </div>
+        <div class="form-group">
+          {{ form.trade_rationale.label_tag }} {{ form.trade_rationale }}
+        </div>
+        <div class="form-group">
+          {{ form.trade_outcome.label_tag }} {{ form.trade_outcome }}
+        </div>
+        <div class="form-group">
+          {{ form.brokerage.label_tag }} {{ form.brokerage }}
+        </div>
+        <div class="form-group">
+          {{ form.image.label_tag }} {{ form.image }}
+        </div>
+        <div class="form-group">
+          {{ form.notes.label_tag }} {{ form.notes }}
+        </div>
+        <button type="submit" class="btn btn-success">Add Trade</button>
+      </form>
+      <a href="{% url 'index' %}" class="btn btn-secondary mt-3"
+        >Back to Journal</a
+      >
+    </div>
+  </body>
+</html>

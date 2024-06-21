@@ -1,0 +1,65 @@
+{% extends "journal/base.html" %} {% block content %}
+<!-- <a href="{% url 'add_trade' %}" class="btn margin-top">Add New Trade</a>
+<a href="{% url 'export_trades' %}" class="btn margin-top"
+  >Download Trades as Excel</a
+>
+<a href="{% url 'upload_excel' %}" class="btn margin-top"
+  >Upload Trades as Excel</a
+>
+<a href="{% url 'nse_stock' %}" class="btn margin-top">Get Stock Data</a>-->
+
+<h2>My Trades</h2>
+<table class="margin-top">
+  <tr>
+    <th>Date</th>
+    <th>Time</th>
+    <!-- New field -->
+    <th>Stock Symbol</th>
+    <th>Trade Type</th>
+    <th>Entry Price</th>
+    <th>Exit Price</th>
+    <th>Position Size</th>
+    <th>Trade Rationale</th>
+    <th>Trade Outcome</th>
+    <th>Brokerage</th>
+    <!-- New field -->
+    <th>Image</th>
+    <!-- New field -->
+    <th>Notes</th>
+    <th>Actions</th>
+  </tr>
+  {% for trade in trades %}
+  <tr>
+    <td>{{ trade.date }}</td>
+    <td>{{ trade.time }}</td>
+    <!-- New field -->
+    <td>{{ trade.stock_symbol }}</td>
+    <td>{{ trade.trade_type }}</td>
+    <td>{{ trade.entry_price }}</td>
+    <td>{{ trade.exit_price }}</td>
+    <td>{{ trade.position_size }}</td>
+    <td>{{ trade.trade_rationale.capitalize }}</td>
+    <td>{{ trade.trade_outcome }}</td>
+    <td>{{ trade.brokerage }}</td>
+    <!-- New field -->
+    <td>
+      {% if trade.image %}
+      <img
+        src="{{ trade.image.url }}"
+        alt="Trade Image"
+        style="width: 50px; height: 50px"
+      />
+      {% else %} No Image {% endif %}
+    </td>
+    <td>{{ trade.notes.capitalize }}</td>
+    <td>
+      <a href="{% url 'trade_update' trade.pk %}">Edit</a> |
+      <a href="{% url 'trade_delete' trade.pk %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<h3 class="text-center">Total Trades: {{ trades.count }}</h3>
+<h3 class="text-center">Total Trade Outcome: {{ total_outcome }}</h3>
+<h3 class="text-center">Success Trade Percentage : {{ percentage }} %</h3>
+{% endblock %}

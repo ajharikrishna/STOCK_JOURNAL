@@ -1,0 +1,9 @@
+{% extends "journal/base.html" %} {% block content %}
+<h2 class="text-center">Delete Trade</h2>
+<p>Are you sure you want to delete the trade "{{ trade }}"?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn">Confirm Delete</button>
+</form>
+<a href="{% url 'trade_list' %}" class="btn">Cancel</a>
+{% endblock %}
